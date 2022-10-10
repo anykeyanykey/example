@@ -1,0 +1,60 @@
+const emoji = require('./emoji')
+const flow = require('./flow')
+const types = require('./types')
+const lang = require('./lang')
+const scenes = require('./scenes')
+const statuses = require('./statuses')
+
+module.exports = {
+	emoji,
+	flow,
+	types,
+	lang,
+	scenes,
+	statuses,
+	QIWI_TOKEN: process.env.QIWI_TOKEN,
+	QIWI_WALLET: process.env.QIWI_WALLET,
+	QIWI_PAYMENT_LINK: process.env.QIWI_PAYMENT_LINK,
+	YOOMONEY_TOKEN: process.env.YOOMONEY_TOKEN,
+	YOOMONEY_APP: process.env.YOOMONEY_APP,
+	YOOMONEY_PAYMENT_LINK: process.env.YOOMONEY_PAYMENT_LINK,
+	MONGODB_URI: process.env.MONGODB_URI,
+	TG_ADMINS: process.env.TG_ADMINS.split(',').map(id => Number(id)),
+	TG_BANK_ADMIN: Number(process.env.TG_BANK_ADMIN),
+	TG_BOT_TOKEN: process.env.TG_BOT_TOKEN,
+	TG_BOT_LINK: process.env.TG_BOT_LINK,
+	TG_CHANNEL_ID: process.env.TG_CHANNEL_ID,
+	MAX_WITHDRAWAL: parseFloat(process.env.MAX_WITHDRAWAL) || 100,
+	MIN_WITHDRAWAL: parseFloat(process.env.MIN_WITHDRAWAL) || 1,
+	POST_COST: parseFloat(process.env.POST_COST) || 0,
+	REPOST_MULTIPLIER: parseFloat(process.env.REPOST_MULTIPLIER) || 0.06,
+	REPOST_MAX_COST: parseFloat(process.env.REPOST_MAX_COST) || 1000,
+	REPOST_COMMISSION: parseFloat(process.env.REPOST_COMMISSION) || 0.05,
+	TG_ADMIN_USERNAME: process.env.TG_ADMIN_USERNAME,
+	TG_BOT_NAME: process.env.TG_BOT_NAME,
+	TG_BOT_USERNAME: process.env.TG_BOT_USERNAME,
+	TG_CHANNEL_NAME: process.env.TG_CHANNEL_NAME,
+	TG_CHANNEL_LINK: process.env.TG_CHANNEL_LINK,
+	TG_APP_ID: Number(process.env.TG_APP_ID),
+	TG_APP_API_HASH: process.env.TG_APP_API_HASH,
+	TG_ADMIN_LINK: process.env.TG_ADMIN_LINK,
+	POST_LIFETIME: parseInt(process.env.POST_LIFETIME) || 24,
+	POST_LIFETIME_UNIT: process.env.POST_LIFETIME_UNIT || 'hours',
+	REQUEST_LIFETIME: parseInt(process.env.REQUEST_LIFETIME) || 8,
+	REQUEST_LIFETIME_UNIT: process.env.REQUEST_LIFETIME_UNIT || 'hours',
+	WITHDRAWAL_CRON: process.env.WITHDRAWAL_CRON,
+	PAYMENT_CRON: process.env.PAYMENT_CRON,
+	CHECK_CRON: process.env.CHECK_CRON,
+	PAYEER_ACCOUNT: process.env.PAYEER_ACCOUNT,
+	PAYEER_API_ID: process.env.PAYEER_API_ID,
+	PAYEER_API_PASS: process.env.PAYEER_API_PASS,
+	MOMENT_TIMEZONE: process.env.MOMENT_TIMEZONE,
+	MENU_IMAGE_URL: process.env.MENU_IMAGE_URL,
+	FAQ_URL: process.env.FAQ_URL,
+	DEFERRED_SLOT_SIZE: process.env.DEFERRED_SLOT_SIZE || 5,
+	//
+	PHONE_REGEXP: /^\+\d{11,13}$/,
+	DIGITS_REGEXP: /^\d+$/,
+	MAIL_REGEXP: /^((\w[^\W]+)[\.\-]?){1,}\@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i,
+	URL_REGEXP: /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i
+}

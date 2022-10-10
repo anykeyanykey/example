@@ -1,0 +1,42 @@
+const { inlineKeyboard, button } = require('telegraf/lib/markup')
+const { BaseScene } = require('telegraf/lib/scenes/base')
+const Wizard = require('../telegraf/wizard')
+const { scenes: { SCENE_ID_GROUPS, SCENE_ID_GROUP, SCENE_ID_GROUP_ITEM } } = require('../const')
+const { lang, markup: { backRow }, scene: { enterHandler } } = require('../utils')
+
+const channelRequestMarkup = (ctx, groups) => {
+	return inlineKeyboard([
+		...groups.map(({ id, title }) => button.callback(title, `choose_${id}`)).toChunks(1),
+		[button.callback(lang('cbAddNew'), `add`)],
+		backRow(ctx)
+	])
+}
+
+const welcomeRequest = async (ctx) => {
+	const { main, user } = ctx
+	return main.replyWithMarkdownUpdate(ctx, [lang('chooseGroupsGroup'),
+		channelRequestMarkup(ctx, await user.getGroups())])
+}
+
+const scene0 = new BaseScene(0)
+	.enter(async (ctx) => {
+		await welcomeRequest(ctx)
+		return groupsWizard.goToHandler(ctx, scene0)
+	})
+	.action(/choose_(.+)/, (ctx) => {
+		const { match } = ctx
+		return ctx.scene._enter(SCENE_ID_GROUP_ITEM, { groupId: match[1] })
+	})
+	.action('add', (ctx) => {
+		return ctx.scene._enter(SCENE_ID_GROUP)
+	})
+
+const groupsWizard = new Wizard(
+	SCENE_ID_GROUPS,
+	{
+		enterHandlers: [enterHandler()]
+	},
+	[scene0]
+)
+
+module.exports = groupsWizard

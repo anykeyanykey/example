@@ -1,0 +1,6 @@
+# Project exclude paths
+/node_modules/
+logs
+sessions.json
+telegram.json
+report*
